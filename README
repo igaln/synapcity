@@ -1,0 +1,26 @@
+*********************************************
+Created by Igal Nassima & Nikolas Psaroudakis
+Synapcity Application C++ Code
+*********************************************
+
+//Classes//
+synapcityApp.cpp - Main Executable for the application.
+clusterSystem.h - Headsets are organized into clusters, maintained by clusterSystem class. All data is parsed here.
+cluster.h - Each headset is designed to be a cluster
+JsonRead.h - Reads Json data by creating different threads
+Label.h - Label class for each headset, draws the label and updates the data
+Line.h,vLines.h - Classes for drawing the equalizers in label class
+ParticleSystem, Particle - K-Bin particle system classes, with attraction, repulsion forces
+
+//Resources//
+Contain the images and settings.xml for color distributions and links for data parsing
+
+
+//Platform//
+Written and compiled using Cinder 0.81 (libcinder.org) and XCode 3.2.4
+&& JsonCpp 0.5.0 http://jsoncpp.sourceforge.net/
+
+
+
+
+

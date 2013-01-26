@@ -1,0 +1,15 @@
+<settings>
+<live url="http://synapserver2.dyndns.org:6080/buffer/1/expiration/5/readings.json"></live>
+<history url="http://synapserver2.dyndns.org:6080/artworks/" data="/readings.json"></history>
+<artwork art01="Target" art02="Lost" art03="Wet" art05="PainStation" art06="Proun" art07="Protoquadro" art08="Sissy" art09="Physiognomic Scrutinizer" art10="tVisionarium" art11="Hostage"></artwork>
+<bars>
+<bar r="139" g="69" b="19"></bar>
+<bar r="255" g="255" b="255"></bar>
+<bar r="255" g="255" b="255"></bar>
+<bar r="255" g="255" b="255"></bar>
+<bar r="255" g="255" b="255"></bar>
+<bar r="255" g="255" b="255"></bar>
+<bar r="255" g="255" b="255"></bar>
+<bar r="255" g="0" b="0"></bar>
+</bars>
+</settings>
