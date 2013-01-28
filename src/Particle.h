@@ -79,14 +79,16 @@ public:
 	void draw() {
 		//glColor4f(color);
 		
+        /*
 		if(live) {
 			glColor4f(color);
 		}
 		else {
 			glColor4f(1.0f,1.0f,1.0f,0.6f);
 		}
-		
-
+		*/
+        
+        glColor4f(color);
 		glVertex2f(x, y);
 	}
 };

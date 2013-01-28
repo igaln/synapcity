@@ -1,5 +1,5 @@
 /*
- *  vLines.cpp
+ *  hLines.cpp
  *  synapcityLabel
  *
  *  Created by Nikolas Psaroudakis on 10/16/10.
@@ -7,37 +7,37 @@
  *
  */
 
-#include "vLines.h"
+#include "hLines.h"
 #include "cinder/Vector.h"
 
 
-vLines::vLines()
+hLines::hLines()
 {
 	
-	nLines = 8;
-	width = 10;
+	nLines = 3;
+	height = 10;
 	spacing = 1;
 	length = 80;
 	
 	for (int i =0; i<nLines; i++) {
-		line l = line(pos+Vec2i(i*(width+spacing),6),length);
-		lines.push_back(l);
+		hline hl = hline(pos+Vec2i(i*(width+spacing),6),length);
+		hlines.push_back(hl);
 	}
 }
 
-// vLines(Vec2i(300,8)+pos, 4, 8, 2, 14-4);
-vLines::vLines(Vec2i _pos, int _width, int _nLines, int _spacing, int _length)
+
+hLines::hLines(Vec2i _pos, int _height, int _nLines, int _spacing, int _length)
 {
 	nLines = _nLines;
-	width = _width;
+	height = _height;
 	pos = _pos;
 	spacing = _spacing;
 	length = _length;
 	
 	for (int i =0; i<nLines; i++) {
-		line l = line(pos+Vec2i(i*(width+spacing),6), length);
-		l.setWidth(width);
-		lines.push_back(l);
+		hline l = hline(pos+ Vec2i(6,i*(height+spacing)), length);
+		l.setHeight(height);
+		hlines.push_back(l);
 	}
 	
 	container.push_back(ci::Color(250,219,33));
@@ -48,20 +48,20 @@ vLines::vLines(Vec2i _pos, int _width, int _nLines, int _spacing, int _length)
 	container.push_back(ci::Color(68, 113,187));
 	container.push_back(ci::Color(103,188,53));
 	container.push_back(ci::Color(147,255,26));
-	 
+    
 }
-float vLines::getWidth()
+float hLines::getWidth()
 {
 	return nLines*width + (nLines-1)*spacing;
 }
-void vLines::setSpacing(float _spacing)
+void hLines::setSpacing(float _spacing)
 {
 	
 }
-void vLines::draw()
+void hLines::draw()
 {
 	for (int i=0; i<container.size(); i++) {
-		lines[i].draw(container[i]);
+		hlines[i].draw(container[i]);
 	}
 	
 	

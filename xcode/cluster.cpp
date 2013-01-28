@@ -22,8 +22,8 @@ pSystem(_pSystem), surf(_surf), clusterID(_clusterID), nParticles(_nParticles)
 void cluster::setup()
 {
 	currentJsonHistoryLine = 0;
-	centerAttraction = 50;
-	float padding = 10;
+	centerAttraction = 30;
+	float padding = 30;
 	float maxVelocity = .05;
 	width = app::App::get()->getWindowWidth();
 	height =app::App::get()->getWindowHeight();
@@ -39,7 +39,7 @@ void cluster::setup()
 	theLabel = Label(pos+Vec2i(-30,100));
 	aTimer = ci::Timer();
 	
-	particleNeighborhood = 20;
+	particleNeighborhood = 50;
 	live = true;
 }
 void cluster::setPosition(ci::Vec2i pos)
@@ -65,6 +65,11 @@ void cluster::draw()
 		for (int i=0; i<theLabel.equalizer.nLines; i++) {
 			
 			theLabel.setData(i, Rand::randFloat());
+			
+		}
+        for (int i=0; i<theLabel.meaningMeter.nLines; i++) {
+			
+			theLabel.setMeaningData(i, Rand::randFloat());
 			
 		}
 		aTimer.stop();

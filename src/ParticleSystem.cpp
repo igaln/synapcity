@@ -260,28 +260,31 @@ void ParticleSystem::update() {
 	for(int i = 0; i < n; i++){
 		particles[i]->addDampingForce(dampingForce);
 		particles[i]->updatePosition(timeStep);
-		particles[i]->bounceOffWalls(0, 0, ci::app::App::get()->getWindowWidth(), ci::app::App::get()->getWindowHeight());
+		//particles[i]->bounceOffWalls(0, 0, ci::app::App::get()->getWindowWidth(), ci::app::App::get()->getWindowHeight());
 		
 	}
 }
 
 void ParticleSystem::draw() {
 	
+    /*
 	forceLineIter = forceLines.begin();
 	glBegin(GL_LINES);
 	while (forceLineIter!=forceLines.end()) {
-		(*forceLineIter).color.a = 0.05;
+		(*forceLineIter).color.a = 0.01;
 		
-		glColor4f((*forceLineIter).color);
-		
-		/*
+		//glColor4f((*forceLineIter).color);
+	
 		if(live) {
 			glColor4f((*forceLineIter).color);
 		}
 		else {
 			glColor4f(1.0f,1.0f,1.0f,0.05f);
 		}
-		*/
+		
+        
+        //glColor4f(1.0f,1.0f,1.0f,0.05f);
+        glColor4f((*forceLineIter).color);
 		
 		
 		glVertex2f((*forceLineIter).xA, (*forceLineIter).yA);
@@ -290,7 +293,8 @@ void ParticleSystem::draw() {
 		++forceLineIter;
 	}
 	glEnd();
-	
+    */
+
 	int n = particles.size();
 	glBegin(GL_POINTS);
 	for(int i = 0; i < n; i++)

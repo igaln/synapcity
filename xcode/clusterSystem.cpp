@@ -166,16 +166,16 @@ void clusterSystem::setup()
 		cluster* c = new cluster(pSystem, mySurface, i, numClusterParticles);
 		
 		c->setPosition(positions[i]);
-		c->particleRepulsion = Rand::randInt(3,5);
+		c->particleRepulsion = Rand::randInt(12,12);
 		
-		c->centerAttraction = Rand::randInt(40,90);
+		c->centerAttraction = Rand::randInt(10,10);
 		Rand::randomize ();
 		//setup variables
-		c->repulsionTime = Rand::randFloat(0.001,0.5);
+		c->repulsionTime = Rand::randFloat(0.01,0.5);
 		Rand::randomize ();
-		c->repulsionWidth = Rand::randInt(40,120);
+		c->repulsionWidth = Rand::randInt(100,520);
 		Rand::randomize ();
-		c->repulsionHeight = Rand::randInt(40,120);
+		c->repulsionHeight = Rand::randInt(100,520);
 		
 		clusters.push_back(c);
 	}
@@ -197,9 +197,9 @@ void clusterSystem::setup()
 		historyReaders.push_back(h);
 		
 	}
+    
 	//History reader threader read;
 	for (int i=0; i< numClusters; i++) {
-
 		historyReaders[i].threadedRead();
 	}
 	
@@ -221,8 +221,11 @@ void clusterSystem::setup()
 }
 void clusterSystem::setPositions()
 {
-	
-    positions.push_back(ci::Vec2i(102, 180));
+	//updated to push back to single large position
+    positions.push_back(ci::Vec2i(550, 480));
+    
+    
+    /*
     positions.push_back(ci::Vec2i(306, 180));
     positions.push_back(ci::Vec2i(510, 180));
     positions.push_back(ci::Vec2i(714, 180));
@@ -232,6 +235,8 @@ void clusterSystem::setPositions()
     positions.push_back(ci::Vec2i(510, 580));
     positions.push_back(ci::Vec2i(714, 580));
     positions.push_back(ci::Vec2i(918, 580 ));
+     
+     */
 }
 void clusterSystem::setImages(){
 	stringstream s;
@@ -276,7 +281,8 @@ void clusterSystem::getAndApplyData()
 	for (int i =0; i< data.size(); i++) {
 		liveClusterIDs[data[i].artwork_id-1]=data[i].artwork_id;
 		//cout << "LIVE ARTWORK " << data[i].artwork_id << endl;
-	}	
+	}
+    
 	//Create the vector containing the dead ones
 	for (int i=0; i<liveClusterIDs.size(); i++) {
 		if (liveClusterIDs[i]==0) {
@@ -329,7 +335,6 @@ void clusterSystem::getAndApplyData()
 			ss.str("");
 			ss << int(clusters[j]->datadead[clusters[j]->currentJsonHistoryLine].eSenseAttention);
 			clusters[j]->theLabel.setAttention(ss.str());
-			
 			clusters[j]->theLabel.setArtworkID(clusters[j]->datadead[clusters[j]->currentJsonHistoryLine].artwork_id);
 			
 			

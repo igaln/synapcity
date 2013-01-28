@@ -20,6 +20,7 @@
 #include "cinder/Font.h"
 #include "cinder/Rand.h"
 #include "vLines.h"
+#include "hLines.h"
 #include "cinder/app/App.h"
 #include <vector>
 #include <string>
@@ -36,6 +37,7 @@ public:
 	Label(Vec2i _pos);
 	void draw();
 	void setData(int i, float val);
+    void setMeaningData(int i, float val);
 	void setArtworkID(int i);
 	void setUserName(string name);
 	void setAttention(string attention);
@@ -60,9 +62,23 @@ public:
 	string attentValue;
 	string artworkID;
 	string artworkName;
-
+    
+    // meaning labels
+    TextLayout interestingnessTxt;
+	TextLayout neurocapitalTxt;
+	TextLayout artvaluationTxt;
+    
+    Texture interestingnessTexture;
+	Texture	neurocapitalTexture;
+	Texture	artvaluationTexture;
+    
+    string interestingness;
+	string neurocapital;
+	string artvaluation;
+    //end meaning labels
 
 	vLines equalizer;
+    hLines meaningMeter;
 	 
 
 };

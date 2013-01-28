@@ -48,7 +48,7 @@ void synapcityApp::setup(){
 	slowMotion = isMousePressed = false;
 	particleSystem = new ParticleSystem();
 	particleSystem->setup(getWindowWidth(), getWindowHeight(), binPower);
-	clusterSys = new clusterSystem(particleSystem,NUMOFCLUSTERS, 20000);
+	clusterSys = new clusterSystem(particleSystem,NUMOFCLUSTERS, 10000);
 	
 	logo = gl::Texture(loadImage(ci::app::App::get()->getResourcePath("logo.png")));
 	icons = gl::Texture(loadImage(ci::app::App::get()->getResourcePath("raw_wave_title.png")));
@@ -93,12 +93,8 @@ void synapcityApp::draw()
 	glPopMatrix();
     
     glBegin(GL_LINES);
-	glVertex2f(1100, 0);
-	glVertex2f(1100, app::App::get()->getWindowHeight());
-    
-    glVertex2f(1100, app::App::get()->getWindowHeight() / 2);
-	glVertex2f(app::App::get()->getWindowWidth(), app::App::get()->getWindowHeight() / 2);
-
+	glVertex2f(800, 0);
+	glVertex2f(800, app::App::get()->getWindowHeight());
 	glEnd();
 
 	
@@ -110,7 +106,7 @@ void synapcityApp::keyDown( KeyEvent event )
 	if( event.getChar() == 's' ) {
 		slowMotion = !slowMotion;
 		if(slowMotion)
-			ParticleSystem::timeStep = .05;
+			ParticleSystem::timeStep = .02;
 		else
 			ParticleSystem::timeStep = 1;
 	}

@@ -13,7 +13,7 @@
 line::line()
 {
 	maxHeight = 94;
-	width = 5;
+	width = 10;
 	pos = Vec2i(0,0);
 	val = 1.0f;
 }
@@ -21,7 +21,7 @@ line::line(Vec2i _pos, int _maxHeight)
 {
 	pos=_pos;
 	maxHeight = _maxHeight;
-	width = 3;
+	width = 10;
 	val =1;
 }
 void line::setValue(float _val)

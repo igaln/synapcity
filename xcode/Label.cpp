@@ -15,11 +15,11 @@ Label::Label()
 Label::Label(Vec2i _pos)
 {
 	
-	artworkTxt.setFont(Font(loadFile(cinder::app::App::get()->getResourcePath("etelkanarrowlightpro.otf")), 18 )); //etelkanarrowmediumpro.otf
+	artworkTxt.setFont(Font(loadFile(cinder::app::App::get()->getResourcePath("etelkanarrowlightpro.otf")), 25 )); //etelkanarrowmediumpro.otf
 	artworkTxt.setColor(Color(1.0f,1.0f,1.0f));
-	nameTxt.setFont(Font( loadFile(cinder::app::App::get()->getResourcePath("etelkanarrowlightpro.otf")), 15 ));
+	nameTxt.setFont(Font( loadFile(cinder::app::App::get()->getResourcePath("etelkanarrowlightpro.otf")), 25 ));
 	nameTxt.setColor(Color(1.0f,1.0f,1.0f));
-	primaryReadingsTxt.setFont(Font(loadFile(cinder::app::App::get()->getResourcePath( "etelkamonospacepro.otf")), 15));
+	primaryReadingsTxt.setFont(Font(loadFile(cinder::app::App::get()->getResourcePath( "etelkamonospacepro.otf")), 25));
 	primaryReadingsTxt.setColor(Color(1.0f,1.0f,1.0f));
 	
 	userName = "";
@@ -40,13 +40,41 @@ Label::Label(Vec2i _pos)
 	pos = _pos;
 	//vLines(Vec2i _pos, int _width, int _nLines, int _spacing, int _length);
 	//cout << readingsTexture.getHeight() << endl;
-	equalizer = vLines(Vec2i(2,8)+pos, 4, 8, 2, 14-4);
+	equalizer = vLines(Vec2i(700,300)+pos, 40, 8, 4, 200);
+    meaningMeter = hLines(Vec2i(700,-400)+pos, 40, 3, 50, 250);
 	
 	//Set equalizer
 	for (int i=0; i<equalizer.nLines; i++) {
 		float r = Rand::randFloat();
 		setData(i, r);
 	}
+    
+    // meaning labels
+    interestingness  = "Interestingness" ;
+	neurocapital = "Neurocapital";
+	artvaluation = "Art Valuation";
+   
+     interestingnessTxt.setFont(Font(loadFile(cinder::app::App::get()->getResourcePath("etelkanarrowlightpro.otf")), 25 ));
+     interestingnessTxt.setColor(Color(1.0f,1.0f,1.0f));
+     interestingnessTxt.addLine(interestingness);
+    
+	 neurocapitalTxt.setFont(Font(loadFile(cinder::app::App::get()->getResourcePath("etelkanarrowlightpro.otf")), 25 ));
+     neurocapitalTxt.setColor(Color(1.0f,1.0f,1.0f));
+     neurocapitalTxt.addLine(neurocapital);
+	 artvaluationTxt.setFont(Font(loadFile(cinder::app::App::get()->getResourcePath("etelkanarrowlightpro.otf")), 25 ));
+     artvaluationTxt.setColor(Color(1.0f,1.0f,1.0f));
+     artvaluationTxt.addLine(artvaluation);
+    
+    readingsTexture = Texture( primaryReadingsTxt.render(true));
+
+    interestingnessTexture  = Texture( interestingnessTxt.render(true));
+    neurocapitalTexture  = Texture( neurocapitalTxt.render(true));
+    artvaluationTexture  = Texture( artvaluationTxt.render(true));
+	//Texture	neurocapitalTexture;
+	//Texture	artvaluationTexture;
+    
+  
+    //end meaning labels
 
 }
 void Label::setArtworkID(int i)
@@ -121,18 +149,24 @@ void Label::draw()
 	
 	//Draw artworkID, username and artworkID
 	glEnable(GL_TEXTURE_2D);
-		ci::gl::draw(artworkTexture, Vec2i( 0, 16 )+ pos );
-	ci::gl::draw(readingsTexture,Vec2i(51,2) + pos);
+    ci::gl::draw(artworkTexture, Vec2i( 700, 310 )+ pos );
+	ci::gl::draw(readingsTexture,Vec2i(790,312) + pos);
 	ci::gl::draw(nameTexture, pos + Vec2i(0,artworkTexture.getHeight()+equalizer.width+13));
+    
+    
+    //new meaning labels
+    ci::gl::draw(interestingnessTexture, Vec2i(705,-360)+pos);
+    ci::gl::draw(neurocapitalTexture, Vec2i(705,-270)+pos);
+    ci::gl::draw(artvaluationTexture, Vec2i(705,-179)+pos);
     //popMatrices();
 	glDisable(GL_TEXTURE_2D);
 	
 	//Draw horizontal line
-	Vec2i hLinePos = Vec2i(0, artworkTexture.getHeight())+pos;
-	int hLineLength = artworkTexture.getWidth() + readingsTexture.getWidth() + equalizer.getWidth();
+	//Vec2i hLinePos = Vec2i(0, artworkTexture.getHeight())+pos;
+	//int hLineLength = artworkTexture.getWidth() + readingsTexture.getWidth() + equalizer.getWidth();
 	
 	equalizer.draw();
-		 
+	meaningMeter.draw();
 	
 }
 // val needs to be in the range 0 to 1 (i.e percentage of max line length)
@@ -140,4 +174,10 @@ void Label::setData(int i, float val)
 {
 	equalizer.lines[i].val = val;
 
+}
+
+void Label::setMeaningData(int i, float val)
+{
+	meaningMeter.hlines[i].val = val;
+    
 }
